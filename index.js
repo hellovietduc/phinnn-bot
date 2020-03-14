@@ -1,7 +1,8 @@
 const restana = require('restana');
 const bodyParser = require('body-parser');
-const logger = require('./utils/logger');
+const nodeCleanup = require('node-cleanup');
 const webhook = require('./webhook');
+const logger = require('./utils/logger');
 
 const mainLogger = logger.of('main');
 const webhookLogger = logger.of('webhook');
@@ -36,4 +37,8 @@ api.post('/updates/:token', authHandler, webhookHandler);
 api.start(PORT).then(() => {
     mainLogger.info('phinnn started');
     webhookLogger.info(`listening on port ${PORT}`);
+});
+
+nodeCleanup(() => {
+    mainLogger.info('phinnn stopped');
 });
