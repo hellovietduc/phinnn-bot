@@ -4,7 +4,8 @@
   "description": "My Telegram Bot called Phinnn",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon -r dotenv/config index.js"
+    "dev": "nodemon -r dotenv/config index.js",
+    "prisma": "cd db/prisma && prisma deploy && prisma generate"
   },
   "dependencies": {
     "axios": "^0.19.2",
