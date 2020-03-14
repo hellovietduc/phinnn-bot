@@ -1,7 +1,8 @@
 const restana = require('restana');
 const bodyParser = require('body-parser');
 const nodeCleanup = require('node-cleanup');
-const webhook = require('./webhook');
+const webhookHandler = require('./webhook');
+const memory = require('./db/memory');
 const logger = require('./utils/logger');
 
 const mainLogger = logger.of('main');
@@ -25,20 +26,18 @@ const authHandler = (req, res, next) => {
     }
 };
 
-const webhookHandler = webhook({
-    logger: webhookLogger
-});
-
 const api = restana({ errorHandler });
 api.use(bodyParser.json());
 
 api.post('/updates/:token', authHandler, webhookHandler);
 
 api.start(PORT).then(() => {
+    memory.loadToMem();
     mainLogger.info('phinnn started');
     webhookLogger.info(`listening on port ${PORT}`);
 });
 
 nodeCleanup(() => {
+    memory.dumpToFile();
     mainLogger.info('phinnn stopped');
 });

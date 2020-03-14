@@ -105,3 +105,6 @@ dist
 
 # VSCode
 .vscode
+
+# data file
+db/memory/data.json

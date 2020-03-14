@@ -1,5 +1,7 @@
 const signale = require('signale');
 
+const dictLogger = {};
+
 const logLevels = ['success', 'info', 'warn', 'error'];
 
 const stringify = arg => {
@@ -13,6 +15,10 @@ const stringify = arg => {
 };
 
 module.exports.of = serviceName => {
+    if (dictLogger[serviceName]) {
+        return dictLogger[serviceName];
+    }
+
     const defaultMsgObj = { prefix: `[${serviceName}]` };
     const logger = {};
     for (const level of logLevels) {
