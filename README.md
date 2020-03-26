@@ -16,6 +16,7 @@ My Telegram Bot called Phinnn.
 
     ```
     git clone https://github.com/vietduc01100001/phinnn-bot.git
+    cd phinnn-bot
     npm install --production
     ```
 
@@ -70,4 +71,4 @@ My Telegram Bot called Phinnn.
 
 ## Play with your Bot!
 
-You can start being lazier now!
+You can start being lazier now! 🎉
