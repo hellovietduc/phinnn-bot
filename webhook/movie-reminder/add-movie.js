@@ -1,6 +1,6 @@
-const { prisma } = require('../db/prisma');
-const noti = require('../utils/noti');
-const logger = require('../utils/logger');
+const { prisma } = require('../../db/prisma');
+const noti = require('../../utils/noti');
+const logger = require('../../utils/logger');
 
 const webhookLogger = logger.of('webhook');
 const movieReminderLogger = logger.of('movie-reminder');
