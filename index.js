@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const nodeCleanup = require('node-cleanup');
 const webhookHandler = require('./webhook');
 const memory = require('./db/memory');
+const jobs = require('./jobs');
 const logger = require('./utils/logger');
 
 const mainLogger = logger.of('main');
@@ -33,6 +34,7 @@ api.post('/updates/:token', authHandler, webhookHandler);
 
 api.start(PORT).then(() => {
     memory.loadToMem();
+    jobs.runRepeatedJobs();
     mainLogger.info('phinnn started');
     webhookLogger.info(`listening on port ${PORT}`);
 });

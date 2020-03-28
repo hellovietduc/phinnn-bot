@@ -7,3 +7,8 @@ module.exports.BOT_COMMAND = {
     '/removemovie': 'remove-movie',
     '/showwatchlist': 'show-watchlist'
 };
+
+module.exports.MOVIE_REMINDER = {
+    DEFAULT_TIME: '11:00',
+    DEFAULT_INTERVAL: 1000 * 60 * 60 * 24 * 7 // 7 days
+};
