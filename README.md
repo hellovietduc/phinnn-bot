@@ -14,7 +14,7 @@ My Telegram Bot called Phinnn.
 
 - First, clone the project and install dependencies.
 
-    ```
+    ```console
     git clone https://github.com/vietduc01100001/phinnn-bot.git
     cd phinnn-bot
     npm install --production
@@ -22,7 +22,7 @@ My Telegram Bot called Phinnn.
 
 - Run [Prisma](https://www.prisma.io/docs/) via Docker Compose. Feel free to edit [db/docker-compose.yml](db/docker-compose.yml) to match your need (e.g. data persistence).
 
-    ```
+    ```console
     npm run prisma
     ```
 
@@ -35,7 +35,7 @@ My Telegram Bot called Phinnn.
 
 - Run the Bot.
 
-    ```
+    ```console
     npm start
     ```
 
