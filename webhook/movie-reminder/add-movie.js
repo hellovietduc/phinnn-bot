@@ -19,7 +19,8 @@ module.exports = async (content, message) => {
             noti.send(`Movie '${movieTitle}' is already added to watchlist.`, { chatId });
         } else {
             await prisma.createMovie({
-                title: movieTitle
+                title: movieTitle,
+                chatId
             });
             noti.send(`Added movie '${movieTitle}' to watchlist.`, { chatId });
             movieReminderLogger.success(`added: ${movieTitle}`);

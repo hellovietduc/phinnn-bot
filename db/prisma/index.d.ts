@@ -105,7 +105,9 @@ export type MovieOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "title_ASC"
-  | "title_DESC";
+  | "title_DESC"
+  | "chatId_ASC"
+  | "chatId_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
@@ -143,20 +145,31 @@ export interface MovieWhereInput {
   title_not_starts_with?: Maybe<String>;
   title_ends_with?: Maybe<String>;
   title_not_ends_with?: Maybe<String>;
+  chatId?: Maybe<Int>;
+  chatId_not?: Maybe<Int>;
+  chatId_in?: Maybe<Int[] | Int>;
+  chatId_not_in?: Maybe<Int[] | Int>;
+  chatId_lt?: Maybe<Int>;
+  chatId_lte?: Maybe<Int>;
+  chatId_gt?: Maybe<Int>;
+  chatId_gte?: Maybe<Int>;
   AND?: Maybe<MovieWhereInput[] | MovieWhereInput>;
 }
 
 export interface MovieCreateInput {
   id?: Maybe<ID_Input>;
   title: String;
+  chatId: Int;
 }
 
 export interface MovieUpdateInput {
   title?: Maybe<String>;
+  chatId?: Maybe<Int>;
 }
 
 export interface MovieUpdateManyMutationInput {
   title?: Maybe<String>;
+  chatId?: Maybe<Int>;
 }
 
 export interface MovieSubscriptionWhereInput {
@@ -175,11 +188,13 @@ export interface NodeNode {
 export interface Movie {
   id: ID_Output;
   title: String;
+  chatId: Int;
 }
 
 export interface MoviePromise extends Promise<Movie>, Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
+  chatId: () => Promise<Int>;
 }
 
 export interface MovieSubscription
@@ -187,6 +202,7 @@ export interface MovieSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
+  chatId: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface MovieNullablePromise
@@ -194,6 +210,7 @@ export interface MovieNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
+  chatId: () => Promise<Int>;
 }
 
 export interface MovieConnection {
@@ -317,6 +334,7 @@ export interface MovieSubscriptionPayloadSubscription
 export interface MoviePreviousValues {
   id: ID_Output;
   title: String;
+  chatId: Int;
 }
 
 export interface MoviePreviousValuesPromise
@@ -324,6 +342,7 @@ export interface MoviePreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
+  chatId: () => Promise<Int>;
 }
 
 export interface MoviePreviousValuesSubscription
@@ -331,6 +350,7 @@ export interface MoviePreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
+  chatId: () => Promise<AsyncIterator<Int>>;
 }
 
 /*

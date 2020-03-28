@@ -16,6 +16,7 @@ scalar Long
 type Movie {
   id: ID!
   title: String!
+  chatId: Int!
 }
 
 type MovieConnection {
@@ -27,6 +28,7 @@ type MovieConnection {
 input MovieCreateInput {
   id: ID
   title: String!
+  chatId: Int!
 }
 
 type MovieEdge {
@@ -39,11 +41,14 @@ enum MovieOrderByInput {
   id_DESC
   title_ASC
   title_DESC
+  chatId_ASC
+  chatId_DESC
 }
 
 type MoviePreviousValues {
   id: ID!
   title: String!
+  chatId: Int!
 }
 
 type MovieSubscriptionPayload {
@@ -64,10 +69,12 @@ input MovieSubscriptionWhereInput {
 
 input MovieUpdateInput {
   title: String
+  chatId: Int
 }
 
 input MovieUpdateManyMutationInput {
   title: String
+  chatId: Int
 }
 
 input MovieWhereInput {
@@ -99,6 +106,14 @@ input MovieWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  chatId: Int
+  chatId_not: Int
+  chatId_in: [Int!]
+  chatId_not_in: [Int!]
+  chatId_lt: Int
+  chatId_lte: Int
+  chatId_gt: Int
+  chatId_gte: Int
   AND: [MovieWhereInput!]
 }
 

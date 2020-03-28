@@ -1,4 +1,5 @@
 type Movie {
   id: ID! @id
   title: String! @unique
+  chatId: Int!
 }

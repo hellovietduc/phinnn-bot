@@ -1,5 +1,5 @@
 {
     "hooks": {
-        "pre-commit": "node_modules/.bin/eslint ."
+        "pre-commit": "lint-staged"
     }
 }
