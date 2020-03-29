@@ -1,5 +1,6 @@
 const { prisma } = require('../../db/prisma');
 const noti = require('../../utils/noti');
+const lang = require('../../lang/movie-reminder');
 const logger = require('../../utils/logger');
 
 const webhookLogger = logger.of('webhook');
@@ -8,22 +9,22 @@ const movieReminderLogger = logger.of('movie-reminder');
 module.exports = async (content, message) => {
     try {
         const chatId = message.chat.id;
-        const movieTitle = content;
-        if (!movieTitle) {
-            return noti.send('Please specify movie name!', { chatId });
+        const title = content;
+        if (!title) {
+            return noti.send(lang.noMovieTitle(), { chatId });
         }
         const movie = await prisma.movie({
-            title: movieTitle
+            title
         });
         if (movie) {
-            noti.send(`Movie '${movieTitle}' is already added to watchlist.`, { chatId });
+            noti.send(lang.foundInWatchlist({ title }), { chatId });
         } else {
             await prisma.createMovie({
-                title: movieTitle,
+                title,
                 chatId
             });
-            noti.send(`Added movie '${movieTitle}' to watchlist.`, { chatId });
-            movieReminderLogger.success(`added: ${movieTitle}`);
+            noti.send(lang.added({ title }), { chatId });
+            movieReminderLogger.success(`added: ${title}`);
         }
     } catch (err) {
         webhookLogger.error('add movie', err);

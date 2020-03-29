@@ -2,6 +2,7 @@ const { CronJob } = require('cron');
 const enumVal = require('../../common/enum');
 const { prisma } = require('../../db/prisma');
 const noti = require('../../utils/noti');
+const lang = require('../../lang/movie-reminder');
 const logger = require('../../utils/logger');
 
 const movieReminderLogger = logger.of('movie-reminder');
@@ -13,7 +14,7 @@ const remindMovie = async () => {
 
         // pick a random movie
         const { title, chatId } = movies[Math.floor(Math.random() * movies.length)];
-        noti.send(`Let's watch '${title}' today!`, { chatId });
+        noti.send(lang.remind({ title }), { chatId });
 
         await prisma.deleteMovie({ title });
         movieReminderLogger.info(`removed: ${title}`);

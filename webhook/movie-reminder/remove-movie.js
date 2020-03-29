@@ -1,22 +1,23 @@
 const { prisma } = require('../../db/prisma');
 const noti = require('../../utils/noti');
+const lang = require('../../lang/movie-reminder');
 const logger = require('../../utils/logger');
 
 const movieReminderLogger = logger.of('movie-reminder');
 
 module.exports = async (content, message) => {
     const chatId = message.chat.id;
-    const movieTitle = content;
+    const title = content;
     try {
-        if (!movieTitle) {
-            return noti.send('Please specify movie name!', { chatId });
+        if (!title) {
+            return noti.send(lang.noMovieTitle(), { chatId });
         }
         await prisma.deleteMovie({
-            title: movieTitle
+            title
         });
-        noti.send(`Removed movie '${movieTitle}' from watchlist.`, { chatId });
-        movieReminderLogger.info(`removed: ${movieTitle}`);
+        noti.send(lang.removed({ title }), { chatId });
+        movieReminderLogger.info(`removed: ${title}`);
     } catch (err) {
-        noti.send(`Movie '${movieTitle}' does not exist.`, { chatId });
+        noti.send(lang.notFound({ title }), { chatId });
     }
 };
