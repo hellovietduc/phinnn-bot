@@ -47,6 +47,8 @@ My Telegram Bot called Phinnn.
     addmovie - Add a movie to your watchlist
     removemovie - Remove a movie from your watchlist
     showwatchlist - Show your movie watchlist
+    startpomodoro - Start a pomodoro
+    stoppomodoro - Stop a pomorodo
     ```
 
 - The following commands are on developing.
@@ -55,8 +57,6 @@ My Telegram Bot called Phinnn.
     addreminder - Add a new reminder
     addpayment - Add a payment this month
     payments - Show payment summary this month
-    startpomodoro - Start a pomodoro
-    stoppomodoro - Stop a pomorodo
     searchandsend - Google Search this text and send results at specified time
     ```
 

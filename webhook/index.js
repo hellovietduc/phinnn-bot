@@ -74,6 +74,6 @@ module.exports = (req, res) => {
 
     // safe require because of enums
     // eslint-disable-next-line import/no-dynamic-require, global-require
-    const handleFunc = require(`./${enumVal.COMMAND_GROUP.MOVIE_REMINDER}/${handlerName}`);
+    const handleFunc = require(`./${handlerName}`);
     handleFunc(content, reqBody.message);
 };
