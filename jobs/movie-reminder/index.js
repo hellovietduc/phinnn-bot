@@ -1,4 +1,4 @@
-const chall = require('chall');
+const { CronJob } = require('cron');
 const enumVal = require('../../common/enum');
 const { prisma } = require('../../db/prisma');
 const noti = require('../../utils/noti');
@@ -23,11 +23,7 @@ const remindMovie = async () => {
 };
 
 module.exports.start = () => {
-    const time = process.env.MOVIE_REMINDER_TIME;
-    const interval = Number(process.env.MOVIE_REMINDER_INTERVAL);
-    chall.schedule(
-        remindMovie,
-        time || enumVal.MOVIE_REMINDER.DEFAULT_TIME,
-        interval || enumVal.MOVIE_REMINDER.DEFAULT_INTERVAL
-    );
+    const cron = process.env.MOVIE_REMINDER_CRON || enumVal.MOVIE_REMINDER.DEFAULT_CRON;
+    const job = new CronJob(cron, remindMovie);
+    job.start();
 };
